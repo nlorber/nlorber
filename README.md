@@ -6,7 +6,7 @@ Currently focused on applied ML, LLM tooling, and AI security.
 
 ## Projects
 
-> These projects are anonymized and rewritten versions of systems I built in professional contexts. All proprietary code, data, and company references have been removed. Synthetic data and mock APIs replace the originals.
+> These projects use synthetic data and mock APIs. Architecture and design patterns are inspired by production systems.
 
 ### [transaction-classifier](https://github.com/nlorber/transaction-classifier)
 Multi-class classification system that predicts French accounting codes from financial transaction data. XGBoost with domain-specific feature engineering (entity detection, fiscal period signals, SEPA fields), temporal train/val split, multi-client isolation, and a FastAPI inference API with hot-reload and artifact checksums.
@@ -52,9 +52,9 @@ flowchart LR
 
 ## Stack
 
-Python · TypeScript · XGBoost · PyTorch · LangChain · RAG · MCP · FastAPI · Docker · Kubernetes · Terraform · Snowflake · dbt · AWS · Azure
+**Portfolio:** Python · TypeScript · XGBoost · scikit-learn · FastAPI · MCP · RAG · Zod · Docker · Optuna · spaCy
 
-*Full professional stack — portfolio projects demonstrate a subset.*
+**Also used professionally:** PyTorch · TensorFlow · LangChain · Kubernetes · Terraform · Snowflake · dbt · AWS · Azure
 
 ## Contact
 
