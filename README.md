@@ -50,6 +50,21 @@ flowchart LR
 
 **Python · OpenAI embeddings · scikit-learn · Annoy · spaCy · FastAPI**
 
+### [llm-firewall](https://github.com/nlorber/llm-firewall)
+Personal project exploring LLM security. Fine-tuned DeBERTa-v3-base classifier for prompt threat detection (injection, jailbreak, exfiltration, escalation) with a LangGraph orchestration layer that routes ambiguous prompts to a Claude LLM judge. The hybrid approach cuts LLM API costs by ~80-90% vs. classifying every prompt with an LLM.
+
+```mermaid
+flowchart LR
+    P[Prompt] --> CLS[DeBERTa Classifier\n~10ms]
+    CLS -->|CLEAN| PASS[Pass]
+    CLS -->|GRAY| JDG[Claude Judge\n~500ms]
+    CLS -->|BLOCK| BLK[Block + Log]
+    JDG -->|PASS| PASS
+    JDG -->|BLOCK| BLK
+```
+
+**Python · PyTorch · HuggingFace Transformers · DeBERTa-v3 · LangGraph · Claude API · SHAP · FastAPI · Docker**
+
 ## Stack
 
 **Portfolio:** Python · TypeScript · XGBoost · scikit-learn · FastAPI · MCP · RAG · Zod · Docker · Optuna · spaCy
