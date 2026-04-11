@@ -11,12 +11,12 @@ Currently focused on applied ML, LLM tooling, and AI security.
 ### [llm-firewall](https://github.com/nlorber/llm-firewall)
 Hybrid prompt threat detection — DeBERTa classifier + Claude judge. Cuts LLM costs by 80-90%.
 
-![llm-firewall demo](assets/llm-firewall-demo.gif)
+<img src="assets/llm-firewall-demo.gif" alt="llm-firewall demo" width="600">
 
 ### [hybrid-recsys](https://github.com/nlorber/hybrid-recsys)
 Multilingual content recommendations — dual retrieval with RRF fusion and LLM re-ranking.
 
-![hybrid-recsys demo](assets/hybrid-recsys-demo.gif)
+<img src="assets/hybrid-recsys-demo.gif" alt="hybrid-recsys demo" width="600">
 
 ## Projects
 
