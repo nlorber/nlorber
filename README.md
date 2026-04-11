@@ -4,9 +4,21 @@ AI/ML Engineer with 3+ years of experience building production ML and LLM system
 
 Currently focused on applied ML, LLM tooling, and AI security.
 
-## Projects
+## Highlights
 
-> The first three projects use synthetic data and mock APIs. Architecture and design patterns are adapted from production systems I built professionally. `llm-firewall` is a personal project.
+> Architecture and design patterns below are adapted from production systems — synthetic data and mock APIs keep the repos self-contained and runnable without credentials or proprietary data.
+
+### [llm-firewall](https://github.com/nlorber/llm-firewall)
+Hybrid prompt threat detection — DeBERTa classifier + Claude judge. Cuts LLM costs by 80-90%.
+
+![llm-firewall demo](assets/llm-firewall-demo.gif)
+
+### [hybrid-recsys](https://github.com/nlorber/hybrid-recsys)
+Multilingual content recommendations — dual retrieval with RRF fusion and LLM re-ranking.
+
+![hybrid-recsys demo](assets/hybrid-recsys-demo.gif)
+
+## Projects
 
 ### [transaction-classifier](https://github.com/nlorber/transaction-classifier)
 Multi-class classification system that predicts French accounting codes from financial transaction data. XGBoost with domain-specific feature engineering (entity detection, fiscal period signals, SEPA fields), temporal train/val split, multi-client isolation, and a FastAPI inference API with hot-reload and artifact checksums.
