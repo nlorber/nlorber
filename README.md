@@ -6,7 +6,7 @@ Currently focused on applied ML, LLM tooling, and AI security.
 
 ## Highlights
 
-> Architecture and design patterns below are adapted from production systems — synthetic data and mock APIs keep the repos self-contained and runnable without credentials or proprietary data.
+> Architecture and design patterns below are adapted from production systems — synthetic data and mock APIs keep the repos self-contained and runnable without proprietary data. Paths that call an external LLM (e.g. `llm-firewall`'s judge) require an API key; each repo's quick-start lists what is needed.
 
 ### [llm-firewall](https://github.com/nlorber/llm-firewall)
 Hybrid prompt threat detection — DeBERTa classifier + Claude judge. Cuts LLM costs by 80-90%.
@@ -47,20 +47,20 @@ flowchart LR
 **TypeScript · MCP · Zod · Vitest · Claude API**
 
 ### [hybrid-recsys](https://github.com/nlorber/hybrid-recsys)
-Multilingual content recommendation engine combining dual retrieval (dense embeddings + TF-IDF), Reciprocal Rank Fusion, and optional LLM re-ranking with automatic fallback. Per-language Annoy indexes, duration-aware scoring, and a FastAPI serving layer.
+Multilingual content recommendation engine combining dual retrieval (dense embeddings + TF-IDF), Reciprocal Rank Fusion, and optional LLM re-ranking with automatic fallback. Per-language Voyager HNSW indexes, duration-aware scoring, and a FastAPI serving layer.
 
 ```mermaid
 flowchart LR
     Q[Query] --> EMB[Dense Embeddings]
     Q --> TF[TF-IDF]
-    EMB --> ANN[Annoy ANN Search\nper-language indexes]
+    EMB --> ANN[Voyager HNSW Search\nper-language indexes]
     TF --> ANN
     ANN --> RRF[RRF Fusion]
     RRF --> LLM[LLM Re-rank\nwith fallback]
     LLM --> API[FastAPI]
 ```
 
-**Python · OpenAI embeddings · scikit-learn · Annoy · spaCy · FastAPI**
+**Python · OpenAI embeddings · scikit-learn · Voyager · spaCy · FastAPI**
 
 ### [llm-firewall](https://github.com/nlorber/llm-firewall)
 Personal project exploring LLM security. Fine-tuned DeBERTa-v3-base classifier for prompt threat detection (injection, jailbreak, exfiltration, escalation) with a LangGraph orchestration layer that routes ambiguous prompts to a Claude LLM judge. The hybrid approach cuts LLM API costs by ~80-90% vs. classifying every prompt with an LLM.
