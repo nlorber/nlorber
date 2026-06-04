@@ -44,22 +44,22 @@ flowchart LR
 **Python · OpenAI embeddings · scikit-learn · Voyager · spaCy · FastAPI**
 
 ### [transaction-classifier](https://github.com/nlorber/transaction-classifier)
-Multi-class classification system that predicts French accounting codes from financial transaction data. XGBoost with domain-specific feature engineering (entity detection, fiscal period signals, SEPA fields), temporal train/val split, multi-client isolation, and a FastAPI inference API with hot-reload and artifact checksums.
+Multi-class classification system that predicts French accounting codes from financial transaction data. XGBoost with domain-specific feature engineering (entity detection, fiscal period signals, SEPA fields), temporal train/val split, versioned artifacts with atomic symlink promotion, and a FastAPI inference API with hot-reload and artifact checksums.
 
 <img src="assets/transaction-classifier-demo.gif" alt="transaction-classifier demo" width="600">
 
 ```mermaid
 flowchart LR
-    DB[(Postgres\nper-client)] --> FE[Feature Pipeline\nTF-IDF · domain · numeric · date]
+    DB[(Postgres / CSV)] --> FE[Feature Pipeline\nTF-IDF · domain · numeric · date]
     FE --> XGB[XGBoost\n+ Optuna HPO]
     XGB --> ART[Versioned Artifacts\natomic symlink promotion]
-    ART --> API[FastAPI\nhot-reload · multi-client]
+    ART --> API[FastAPI\nhot-reload]
 ```
 
 **Python · XGBoost · scikit-learn · FastAPI · Optuna · SHAP**
 
 ### [mcp-rest-bridge](https://github.com/nlorber/mcp-rest-bridge)
-Production-ready MCP server template for wrapping any REST API as LLM-usable tools, prompts, and resources. Includes JWT auth with auto-refresh, allowlist-based field filtering, dual transport (stdio + HTTP), and a 22-scenario LLM-as-judge adversarial test suite covering prompt injection, privilege escalation, and data isolation attacks.
+Production-ready MCP server template for wrapping any REST API as LLM-usable tools, prompts, and resources. Includes JWT auth with auto-refresh, allowlist-based field filtering, dual transport (stdio + HTTP), and a 26-scenario LLM-as-judge adversarial test suite covering prompt injection, privilege escalation, data isolation, and nested-field bypass attacks.
 
 <img src="assets/mcp-rest-bridge-demo.gif" alt="mcp-rest-bridge demo" width="600">
 
@@ -68,7 +68,7 @@ flowchart LR
     LLM[LLM Client] -->|MCP| SRV[MCP Server\ntools · prompts · resources]
     SRV -->|JWT auth| API[REST API]
     SRV --> FLT[Allowlist Filter\nfield-level protection]
-    SRV --> ADV[Adversarial Tests\n22 scenarios · LLM-as-judge]
+    SRV --> ADV[Adversarial Tests\n26 scenarios · LLM-as-judge]
 ```
 
 **TypeScript · MCP · Zod · Vitest · Claude API**
