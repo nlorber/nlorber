@@ -9,7 +9,7 @@ Currently focused on applied ML, LLM tooling, and AI security.
 > Architecture and design patterns below are adapted from production systems — synthetic data and mock APIs keep the repos self-contained and runnable without proprietary data. Paths that call an external LLM (e.g. `llm-firewall`'s judge) require an API key; each repo's quick-start lists what is needed.
 
 ### [llm-firewall](https://github.com/nlorber/llm-firewall)
-Personal project exploring LLM security. Fine-tuned DeBERTa-v3-base classifier for prompt threat detection (injection, jailbreak, exfiltration, escalation) with a LangGraph orchestration layer that routes ambiguous prompts to a Claude LLM judge. The hybrid approach cuts LLM API costs by ~80-90% vs. classifying every prompt with an LLM.
+Personal project exploring LLM security. Fine-tuned DeBERTa-v3-base classifier for prompt threat detection (injection, jailbreak, exfiltration, escalation) with a LangGraph orchestration layer that routes ambiguous prompts to a Claude LLM judge. The hybrid approach is projected to cut LLM API calls by ~80-90% vs. classifying every prompt with an LLM, since only the ~10-20% gray zone reaches the judge.
 
 <img src="assets/llm-firewall-demo.gif" alt="llm-firewall demo" width="100%">
 
@@ -18,9 +18,9 @@ Personal project exploring LLM security. Fine-tuned DeBERTa-v3-base classifier f
 
 ```mermaid
 flowchart LR
-    P[Prompt] --> CLS[DeBERTa Classifier\n~10ms]
+    P[Prompt] --> CLS[DeBERTa Classifier<br/>~10ms]
     CLS -->|CLEAN| PASS[Pass]
-    CLS -->|GRAY| JDG[Claude Judge\n~500ms]
+    CLS -->|GRAY| JDG[Claude Judge<br/>~500ms]
     CLS -->|BLOCK| BLK[Block + Log]
     JDG -->|PASS| PASS
     JDG -->|BLOCK| BLK
@@ -42,16 +42,16 @@ Multilingual content recommendation engine combining dual retrieval (dense embed
 flowchart LR
     Q[Query] --> EMB[Dense Embeddings]
     Q --> TF[TF-IDF]
-    EMB --> ANN[Voyager HNSW Search\nper-language indexes]
+    EMB --> ANN[Voyager HNSW Search<br/>per-language indexes]
     TF --> ANN
     ANN --> RRF[RRF Fusion]
-    RRF --> LLM[LLM Re-rank\nwith fallback]
+    RRF --> LLM[LLM Re-rank<br/>with fallback]
     LLM --> API[FastAPI]
 ```
 
 </details>
 
-**Python · OpenAI embeddings · scikit-learn · Voyager · spaCy · FastAPI**
+**Python · sentence-transformers (local multilingual, pluggable provider ABC) · scikit-learn · Voyager · spaCy · FastAPI**
 
 ### [transaction-classifier](https://github.com/nlorber/transaction-classifier)
 Multi-class classification system that predicts French accounting codes from financial transaction data. XGBoost with domain-specific feature engineering (entity detection, fiscal period signals, SEPA fields), temporal train/val split, versioned artifacts with atomic symlink promotion, and a FastAPI inference API with hot-reload and artifact checksums.
@@ -63,10 +63,10 @@ Multi-class classification system that predicts French accounting codes from fin
 
 ```mermaid
 flowchart LR
-    DB[(Postgres / CSV)] --> FE[Feature Pipeline\nTF-IDF · domain · numeric · date]
-    FE --> XGB[XGBoost\n+ Optuna HPO]
-    XGB --> ART[Versioned Artifacts\natomic symlink promotion]
-    ART --> API[FastAPI\nhot-reload]
+    DB[(Postgres / CSV)] --> FE[Feature Pipeline<br/>TF-IDF · domain · numeric · date]
+    FE --> XGB[XGBoost<br/>+ Optuna HPO]
+    XGB --> ART[Versioned Artifacts<br/>atomic symlink promotion]
+    ART --> API[FastAPI<br/>hot-reload]
 ```
 
 </details>
@@ -83,10 +83,10 @@ Production-ready MCP server template for wrapping any REST API as LLM-usable too
 
 ```mermaid
 flowchart LR
-    LLM[LLM Client] -->|MCP| SRV[MCP Server\ntools · prompts · resources]
+    LLM[LLM Client] -->|MCP| SRV[MCP Server<br/>tools · prompts · resources]
     SRV -->|JWT auth| API[REST API]
-    SRV --> FLT[Allowlist Filter\nfield-level protection]
-    SRV --> ADV[Adversarial Tests\n26 scenarios · LLM-as-judge]
+    SRV --> FLT[Allowlist Filter<br/>field-level protection]
+    SRV --> ADV[Adversarial Tests<br/>26 scenarios · LLM-as-judge]
 ```
 
 </details>
